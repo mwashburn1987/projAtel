@@ -12,6 +12,7 @@ const options = {
 };
 
 const host = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
+const sdchost = 'http://localhost:8080'
 
 /*------------------------ PRODUCTS ------------------------ */
 /*------------------------ PRODUCTS ------------------------ */
@@ -86,9 +87,16 @@ const putReviewHelpful = (review_id) => {
 /*------------------------ Questions and Answers ------------------------ */
 /*------------------------ Questions and Answers ------------------------ */
 
+// const getQuestions = (product_id, page = 1, count = 5) => {
+//   return axios.get(host + `/qa/questions/?product_id=${product_id}&page=${page}&count=${count}`, options)
+//     .then((res) => res.data.results)
+//     .catch((err) => console.error(err));
+// };
+
 const getQuestions = (product_id, page = 1, count = 5) => {
-  return axios.get(host + `/qa/questions/?product_id=${product_id}&page=${page}&count=${count}`, options)
-    .then((res) => res.data.results)
+  return axios.get(sdchost + `/qa/questions/${product_id}/${page}/${count}`, options)
+    .then((res) => { console.log('resdata', res.data);
+      return res.data})
     .catch((err) => console.error(err));
 };
 

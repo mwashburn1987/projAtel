@@ -5,10 +5,14 @@ const AnswersList = ({ data, sortData }) => {
   const [moreAnswers, setMoreAnswers] = useState(false);
   const [init, setInit] = useState([]);
   const [answersSize, setAnswersSize] = useState(2);
+  let answersArr;
 
-  let answersArr = Object.values(data).sort((a, b) => {
-    return b.helpfulness - a.helpfulness;
-  });
+  if(data) {
+    answersArr = Object.values(data).sort((a, b) => {
+      console.log('answers list data:', data);
+      return b.helpfulness - a.helpfulness;
+    });
+
 
   useEffect(() => {
     if (answersArr.length > 2) {
@@ -19,16 +23,18 @@ const AnswersList = ({ data, sortData }) => {
     }
   }, [])
 
+
   useEffect(() => {
     if (init.length === answersArr.length) {
       setMoreAnswers(false);
     }
   }, [init])
-
+  }
   let handleMoreAnswers = () => {
     setInit(answersArr.slice(0, answersSize + 2));
     setAnswersSize(answersSize + 2);
   }
+
   return (
     <div className="answer-list">
       {init.length > 0 ?

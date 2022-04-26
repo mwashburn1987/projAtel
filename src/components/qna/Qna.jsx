@@ -24,7 +24,7 @@ const Qna = (props) => {
     }
 
 
-    getQuestions(productData.id, 1, 9999)
+    getQuestions(888999, 1, 9999)
       .then((res) => {
         let data = sortData(res);
 
